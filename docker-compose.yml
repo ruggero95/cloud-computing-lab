@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  db:
+    image: mysql:8.0.27
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    networks:
+      - backend
+    environment:
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_DATABASE
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+  node:
+    env_file:
+      - .env
+    build: .
+    networks:
+      - backend
+    ports:
+      - 4002:4002
+    volumes:
+      - ./log:/home/node/app/log
+    environment:
+      - MYSQL_HOST=db
+
+networks:
+  backend:

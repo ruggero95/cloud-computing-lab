@@ -15,3 +15,13 @@
    - Deploy on the remote and check the application works correctly
    - Write a readme.txt file with the commands (to compile and deploy)
    - Submit a zip archive with project files, readme, dockerfile, docker-compose.yml
+
+## Esecuzione
+
+1) copiare la cartella sulla macchina di produzione, assicurarsi della presenza dei file .env
+2) lanciare docker-compose --compatibility up, se non si vuole vedere output aggiungere -d
+3) testare l applicazione sulla porta 4002, nel file request.rest ci sono tutte le chiamate possibili da poter eseguire che rielenco di seguito:
+    - GET http://localhost:4002 -> check running up
+    - GET http://localhost:4002/items -> lista di tutti gli item    
+    - GET http://localhost:4002/items/1 ->prende l'item con id=1
+    - POST http://localhost:4002/items/add -> aggiunge un item, parametri obbligatori da inviare name, price, weight 

@@ -3,3 +3,4 @@ mysql/data
 node_modules
 log
 package-lock.json
+readme.txt

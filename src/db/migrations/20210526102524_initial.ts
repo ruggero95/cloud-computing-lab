@@ -7,7 +7,6 @@ export async function up(knex: Knex): Promise<void> {
         table.string('name',255).notNullable()
         table.decimal('price').notNullable()
         table.decimal('weight').notNullable()
-        table.dateTime('date').notNullable()
         helpers.softDelete(table)
         helpers.stdFields(table)        
     })

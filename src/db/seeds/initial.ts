@@ -1,16 +1,20 @@
 import { Knex } from "knex";
 import {tables} from "./../../constants/sql_tables"
+import dayjs from "dayjs"
 export async function seed(knex: Knex): Promise<void> {
 
-    await knex(tables.TABLE_ITEMS).del();
-    
+    //await knex(tables.TABLE_ITEMS).del();
+    let tot = await knex(tables.TABLE_ITEMS).count('* as tot')
     // Inserts seed entries
-     await knex(tables.TABLE_ITEMS).insert([
-        { name: "item1" , price:23,weight:540,data:'2021-12-13 13:23:00'},
-        { name: "item2" , price:43,weight:40,data:'2021-12-13 13:23:00'},
-        { name: "item3" , price:73,weight:240,data:'2021-12-13 13:23:00'},
-        { name: "item4" , price:83,weight:540,data:'2021-12-13 13:23:00'},
-        { name: "item5" , price:23,weight:140,data:'2021-12-13 13:23:00'},
-        
-    ]);
+    if(tot[0]['tot']==0){
+        await knex(tables.TABLE_ITEMS).insert([
+            { name: "item1" , price:23,weight:540,created_at:dayjs().format('YYYY-MM-DD HH:mm:ss')},
+            { name: "item2" , price:43,weight:40,created_at:dayjs().format('YYYY-MM-DD HH:mm:ss')},
+            { name: "item3" , price:73,weight:240,created_at:dayjs().format('YYYY-MM-DD HH:mm:ss')},
+            { name: "item4" , price:83,weight:540,created_at:dayjs().format('YYYY-MM-DD HH:mm:ss')},
+            { name: "item5" , price:23,weight:140,created_at:dayjs().format('YYYY-MM-DD HH:mm:ss')},
+            
+        ]);
+    }
+     
 };

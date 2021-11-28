@@ -11,10 +11,21 @@ services:
       - MYSQL_PASSWORD
       - MYSQL_DATABASE
       - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 2G
   node:
     env_file:
       - .env
     build: .
+    restart: always
     networks:
       - backend
     ports:
@@ -23,6 +34,15 @@ services:
       - ./log:/home/node/app/log
     environment:
       - MYSQL_HOST=db
-
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1G
 networks:
   backend:

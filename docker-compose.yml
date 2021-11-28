@@ -3,7 +3,7 @@ services:
   db:
     image: mysql:8.0.27
     volumes:
-      - ./mysql/data:/var/lib/mysql
+      - ./mysql/data:/var/lib/mysql   
     networks:
       - backend
     environment:

@@ -18,7 +18,8 @@ WORKDIR /home/node/app
 COPY --from=building /home/node/app/build build
 
 COPY package.json .
+COPY database_entrypoint.sh .
 
 RUN npm install --no-dev
 
-CMD ["node","build/index"]
+ENTRYPOINT ["./database_entrypoint.sh"]

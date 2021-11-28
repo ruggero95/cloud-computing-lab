@@ -12,9 +12,9 @@ esac
 while  [ "$retval" != "s" ]
 do
     echo 'waiting for database'
-    sleep 1
+    sleep 2
    
-    RESULT=$(wget  http://db:3306 -nc 2>&1)
+    RESULT=$(wget  http://$MYSQL_HOST:3306 -nc 2>&1)
     
     check
 done

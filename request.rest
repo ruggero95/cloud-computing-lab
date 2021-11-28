@@ -1,0 +1,19 @@
+###
+GET http://localhost:4002
+
+
+###
+GET http://localhost:4002/items
+
+###
+GET http://localhost:4002/items/1
+
+###
+POST http://localhost:4002/items/add
+Content-Type: application/json
+
+{
+    "name":"Test",
+    "price":"3",
+    "weight":"29"
+}

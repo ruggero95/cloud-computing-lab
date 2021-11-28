@@ -16,10 +16,9 @@ FROM node:16.13.0-alpine3.13 AS app
 WORKDIR /home/node/app
 
 COPY --from=building /home/node/app/build build
-
+COPY run_node_entrypoint.sh .
 COPY package.json .
-COPY database_entrypoint.sh .
 
-RUN npm install --no-dev
+RUN npm install --no-dev && chmod +x ./run_node_entrypoint.sh
 
-ENTRYPOINT ["./database_entrypoint.sh"]
+ENTRYPOINT ["./run_node_entrypoint.sh"]
